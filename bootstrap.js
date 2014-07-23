@@ -7,7 +7,7 @@ const Cu = Components.utils;
 Cu.import("resource://gre/modules/Services.jsm");
 
 var prefs = Components.classes["@mozilla.org/preferences-service;1"]
-                    .getService(Components.interfaces.nsIPrefBranch);
+  .getService(Components.interfaces.nsIPrefBranch);
 
 function isNativeUI() {
   return (Services.appinfo.ID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}");
@@ -30,7 +30,7 @@ function showDoorhanger(aWindow) {
   var buttons = [];
 
   var curEnv;
-  for (var i=0; i < envs.length; i++) {
+  for (var i = 0; i < envs.length; i++) {
     if (curUrl === envs[i][0]) {
       curEnv = envs[i][1];
     } else {
@@ -47,7 +47,7 @@ function showDoorhanger(aWindow) {
   }
 
   aWindow.NativeWindow.doorhanger.show("Choose APK Factory Service environment (currently " + curEnv + ")",
-"apk-switcher", buttons);
+    "apk-switcher", buttons);
 }
 
 var gDoorhangerMenuId = null;
@@ -57,7 +57,9 @@ function loadIntoWindow(window) {
     return;
 
   if (isNativeUI()) {
-    gDoorhangerMenuId = window.NativeWindow.menu.add("Switch APK Factory", null, function() { showDoorhanger(window); });
+    gDoorhangerMenuId = window.NativeWindow.menu.add("Switch APK Factory", null, function() {
+      showDoorhanger(window);
+    });
   }
 }
 
@@ -83,12 +85,10 @@ var windowListener = {
       loadIntoWindow(domWindow);
     }, false);
   },
-  
-  onCloseWindow: function(aWindow) {
-  },
-  
-  onWindowTitleChange: function(aWindow, aTitle) {
-  }
+
+  onCloseWindow: function(aWindow) {},
+
+  onWindowTitleChange: function(aWindow, aTitle) {}
 };
 
 function startup(aData, aReason) {
@@ -120,8 +120,6 @@ function shutdown(aData, aReason) {
   }
 }
 
-function install(aData, aReason) {
-}
+function install(aData, aReason) {}
 
-function uninstall(aData, aReason) {
-}
+function uninstall(aData, aReason) {}
